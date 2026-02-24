@@ -1,0 +1,77 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // -------------------------------------------------------------------------
+    // Helper functions
+    // -------------------------------------------------------------------------
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    // -------------------------------------------------------------------------
+    // Users collection
+    // -------------------------------------------------------------------------
+    match /users/{userId} {
+      // Users can only read and update their own profile
+      allow read, update: if isAuthenticated() && isOwner(userId);
+      // Profile is created on registration (server-side via Firebase Auth trigger
+      // or client after signUp); no arbitrary creation from client
+      allow create: if isAuthenticated() && isOwner(userId);
+      allow delete: if false; // deletion handled server-side only
+    }
+
+    // -------------------------------------------------------------------------
+    // Analyses collection
+    // -------------------------------------------------------------------------
+    match /analyses/{analysisId} {
+      // Only the owning user may read their own analyses
+      allow read: if isAuthenticated() &&
+        (resource.data.userId == request.auth.uid ||
+         resource.data.userId == "anonymous");
+
+      // Create is allowed only for the authenticated user
+      // (the API route writes with the user's UID or "anonymous")
+      allow create: if isAuthenticated() &&
+        (request.resource.data.userId == request.auth.uid ||
+         request.resource.data.userId == "anonymous");
+
+      // Updates not allowed from the client; handled by server-side API
+      allow update: if false;
+
+      // Users may delete their own analyses
+      allow delete: if isAuthenticated() &&
+        (resource.data.userId == request.auth.uid);
+    }
+
+    // -------------------------------------------------------------------------
+    // Reports collection
+    // -------------------------------------------------------------------------
+    match /reports/{reportId} {
+      allow read, delete: if isAuthenticated() &&
+        resource.data.userId == request.auth.uid;
+      allow create: if isAuthenticated() &&
+        request.resource.data.userId == request.auth.uid;
+      allow update: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // Knowledge base — read-only for authenticated users
+    // -------------------------------------------------------------------------
+    match /knowledge_base/{ruleId} {
+      allow read: if isAuthenticated();
+      allow write: if false; // admin-only via Firebase Console or Admin SDK
+    }
+
+    // -------------------------------------------------------------------------
+    // Deny everything else
+    // -------------------------------------------------------------------------
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

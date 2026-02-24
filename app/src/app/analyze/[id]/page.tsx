@@ -68,7 +68,7 @@ export default function AnalysisDetailPage() {
             <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold">N</span>
             </div>
-            <span className="text-lg font-bold text-gray-900">NIDA</span>
+            <span className="text-lg font-bold text-gray-900">NIDA</span><span className="hidden md:inline text-xs text-gray-400 font-normal ml-1">Native Interpretive Drawing Analysis</span>
           </Link>
           <Link href="/dashboard">
             <Button variant="ghost" size="sm">← Dashboard</Button>
