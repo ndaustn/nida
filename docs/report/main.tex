@@ -1,0 +1,45 @@
+% NIDA Akademik Rapor - Ana Döküman
+% Modüler LaTeX Yapısı
+% Yazar: Nida ÜSTÜN
+% Tarih: 2025
+
+\documentclass[12pt,a4paper,oneside]{report}
+
+% Stil dosyasını yükle
+\input{styles/preamble}
+
+\begin{document}
+
+% ==================== ÖN KISIM ====================
+\input{frontmatter/titlepage}
+\input{frontmatter/abstract-tr}
+\input{frontmatter/abstract-en}
+
+% İçindekiler
+\tableofcontents
+\newpage
+\listoftables
+\newpage
+\listoffigures
+\newpage
+
+% ==================== ANA METİN ====================
+\input{chapters/01-giris}
+\input{chapters/02-problem-durumu}
+\input{chapters/03-amac-ve-alt-amaclar}
+\input{chapters/04-arastirmanin-onemi}
+\input{chapters/05-varsayimlar-sinirliliklar}
+\input{chapters/06-ilgili-alanyazin}
+\input{chapters/07-htp-yorumlama-kurallari}
+\input{chapters/08-yontem}
+\input{chapters/09-sistem-tasarimi}
+\input{chapters/10-uygulama-sureci}
+\input{chapters/11-tartisma}
+\input{chapters/12-sonuc}
+\input{chapters/13-oneriler}
+
+% ==================== ARKA KISIM ====================
+\input{backmatter/references}
+\input{backmatter/appendices}
+
+\end{document}

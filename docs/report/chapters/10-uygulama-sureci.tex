@@ -1,0 +1,173 @@
+% ============================================================
+% BÖLÜM 10: UYGULAMA SÜRECİ
+% ============================================================
+
+\chapter{UYGULAMA SÜRECİ}
+
+\section{Geliştirme Aşamaları}
+
+NIDA sisteminin geliştirilmesi, Agile metodolojisi çerçevesinde iteratif bir süreç olarak yürütülmüştür. Geliştirme aşamaları aşağıda detaylandırılmıştır:
+
+\subsection{Aşama 1: Planlama ve Tasarım}
+
+\begin{itemize}
+  \item \textbf{Gereksinim Analizi:} Okul psikolojik danışmanlarının ihtiyaçları belirlendi
+  \item \textbf{Akademik Literatür Taraması:} HTP temel kaynakları derlendi
+  \item \textbf{Sistem Mimarisi Tasarımı:} Katmanlı mimari ve teknoloji seçimleri yapıldı
+  \item \textbf{Bilgi Tabanı Şeması:} JSON yapısı ve kural kategorileri tanımlandı
+  \item \textbf{Etik Çerçeve:} Kullanım kuralları ve sınırlamalar belirlendi
+  \item \textbf{UX/UI Tasarımı:} Wireframe ve prototip çalışmaları yapıldı
+\end{itemize}
+
+\subsection{Aşama 2: Bilgi Tabanı Oluşturma}
+
+\begin{itemize}
+  \item \textbf{Kaynak Derleme:}
+  \begin{itemize}
+    \item Buck (1948) - HTP temel kuralları
+    \item Hammer (1958) - Klinik uygulama
+    \item Machover (1949) - İnsan figürü
+    \item Koch (1952) - Ağaç testi
+    \item Jolles (1971) - Yorumlama kataloğu
+    \item Koppitz (1968, 1984) - Gelişimsel göstergeler
+    \item Bolander (1977) - Ağaç analizi
+  \end{itemize}
+  \item \textbf{Kural Yapılandırma:} 200+ yorumlama kuralı sistematize edildi
+  \item \textbf{Çelişki Kaydı:} Çelişkili akademik görüşler dokümante edildi
+  \item \textbf{Güven Seviyeleri:} Her kural için güven düzeyi belirlendi
+  \item \textbf{Yaş Aralıkları:} Lowenfeld evreleri ile uyumlu kategorizasyon
+\end{itemize}
+
+\subsection{Aşama 3: Teknik Geliştirme}
+
+\begin{table}[H]
+\centering
+\caption{Teknik Geliştirme Adımları}
+\label{tab:teknikdev}
+\begin{tabular}{p{4cm}p{9cm}}
+\toprule
+\textbf{Bileşen} & \textbf{Geliştirme Detayları} \\
+\midrule
+Proje Kurulumu & Next.js 16 + TypeScript + Tailwind CSS \\
+Firebase Entegrasyonu & Authentication, Firestore, Storage kurulumu \\
+Kullanıcı Arayüzü & Login, Register, Dashboard, Analyze sayfaları \\
+API Geliştirme & /api/analyze endpoint, Gemini entegrasyonu \\
+Bilgi Tabanı & knowledge-base.ts modülü, getKBRules() fonksiyonu \\
+Prompt Mühendisliği & Türkçe/İngilizce çift dilli prompt optimizasyonu \\
+Raporlama & PDF export fonksiyonalitesi \\
+Deployment & Vercel deployment, environment variables \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Aşama 4: Test ve İyileştirme}
+
+\begin{itemize}
+  \item \textbf{Fonksiyonel Testler:} Tüm kullanım senaryoları test edildi
+  \item \textbf{Dil Testleri:} Türkçe ve İngilizce çıktılar doğrulandı
+  \item \textbf{Performans Testi:} API yanıt süreleri ölçüldü (ortalama 7-8 saniye)
+  \item \textbf{Güvenlik Testi:} Kimlik doğrulama ve yetkilendirme kontrolleri
+  \item \textbf{Kullanılabilirlik:} Responsive tasarım ve erişilebilirlik kontrolü
+  \item \textbf{Hata Giderme:} Tespit edilen hatalar düzeltildi
+\end{itemize}
+
+\section{Teknoloji Seçimi Gerekçeleri}
+
+\begin{table}[H]
+\centering
+\caption{Teknoloji Seçimleri ve Gerekçeleri}
+\label{tab:teknolojisecim}
+\begin{tabular}{p{3cm}p{10cm}}
+\toprule
+\textbf{Teknoloji} & \textbf{Seçim Gerekçesi} \\
+\midrule
+Next.js 16 & Modern React framework, App Router, Server Components, kolay deployment \\
+TypeScript & Tip güvenliği, kod kalitesi, IDE desteği, bakım kolaylığı \\
+Tailwind CSS & Hızlı prototipleme, tutarlı tasarım sistemi, düşük dosya boyutu \\
+Firebase & Hızlı başlangıç, gerçek zamanlı veritabanı, entegre auth, ücretsiz tier \\
+Gemini 2.0 Flash & Çok modlu analiz, Türkçe dil desteği, maliyet etkinliği, düşük gecikme \\
+Vercel & Next.js için optimize edilmiş hosting, otomatik ölçekleme, kolay CI/CD \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Prompt Mühendisliği}
+
+Sistemin başarısı, büyük ölçüde yapay zekâ modeline gönderilen prompt'un kalitesine bağlıdır. NIDA'da kullanılan prompt yapısı şu bileşenlerden oluşmaktadır:
+
+\subsection{Prompt Yapısı}
+
+\begin{enumerate}
+  \item \textbf{Rol Tanımı:} Modelin HTP uzmanı olarak konumlandırılması
+  \begin{quote}
+  ``Sen projektif çizim analizi, özellikle House-Tree-Person (HTP) testi konusunda uzmanlaşmış bir çocuk psikoloğusun.''
+  \end{quote}
+
+  \item \textbf{Bilgi Tabanı Enjeksiyonu:} İlgili yorumlama kurallarının prompt'a dahil edilmesi
+
+  \item \textbf{Etik Hatırlatmalar:}
+  \begin{itemize}
+    \item Kesin tanı ifadeleri kullanılmaması
+    \item Yumuşatıcı dil kullanımı (``gösterebilir'', ``işaret edebilir'')
+    \item Her yorum için güven seviyesi belirtilmesi
+    \item Kaynak zorunluluğu
+  \end{itemize}
+
+  \item \textbf{Çıktı Formatı:} Yapılandırılmış JSON şeması
+
+  \item \textbf{Dil Ayarı:} Türkçe veya İngilizce çıktı kontrolü
+\end{enumerate}
+
+\subsection{Prompt Optimizasyonu}
+
+Prompt geliştirme sürecinde aşağıdaki iterasyonlar gerçekleştirildi:
+
+\begin{enumerate}
+  \item \textbf{V1:} Temel İngilizce prompt - Dil karışıklığı sorunu
+  \item \textbf{V2:} Türkçe talimatlar eklendi - Kısmi iyileşme
+  \item \textbf{V3:} Tam Türkçe prompt yazıldı - İstenilen sonuç
+  \item \textbf{V4:} Güven seviyesi ve kaynak zorunluluğu eklendi
+  \item \textbf{V5:} JSON çıktı formatı optimize edildi
+\end{enumerate}
+
+\section{Karşılaşılan Zorluklar ve Çözümler}
+
+\begin{table}[H]
+\centering
+\caption{Geliştirme Sürecinde Karşılaşılan Zorluklar}
+\label{tab:zorluklar}
+\begin{tabular}{p{4cm}p{4cm}p{5cm}}
+\toprule
+\textbf{Zorluk} & \textbf{Etki} & \textbf{Çözüm} \\
+\midrule
+Gemini API Kota Limiti & 429 hatası, hizmet kesintisi & Ücretli plan aktifleştirildi \\
+Türkçe Çıktı Sorunu & İngilizce yanıtlar & Prompt tamamen Türkçe yazıldı \\
+Firebase Index Hatası & Sorgu başarısız & Composite index oluşturuldu \\
+TypeScript Tip Hataları & Build başarısız & Tip tanımları güncellendi \\
+Build Sırasında Env & Firebase init hatası & Null check eklendi \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Deployment ve Canlıya Alma}
+
+\subsection{Deployment Süreci}
+
+\begin{enumerate}
+  \item GitHub repository oluşturuldu
+  \item Vercel ile GitHub entegrasyonu sağlandı
+  \item Environment variables tanımlandı
+  \item Otomatik deployment aktifleştirildi
+  \item Custom domain yapılandırması (opsiyonel)
+\end{enumerate}
+
+\subsection{Canlı Ortam Bilgileri}
+
+\begin{itemize}
+  \item \textbf{Vercel URL:} https://app-baristiran.vercel.app
+  \item \textbf{GitHub:} https://github.com/tialkan/nida
+  \item \textbf{API Endpoint:} /api/analyze
+  \item \textbf{Desteklenen Diller:} Türkçe (varsayılan), İngilizce
+\end{itemize}
+
+\newpage

@@ -1,0 +1,115 @@
+% ============================================================
+% BÖLÜM 11: TARTIŞMA
+% ============================================================
+
+\chapter{TARTIŞMA}
+
+\section{Güçlü Yönler}
+
+NIDA sisteminin güçlü yönleri şu şekilde özetlenebilir:
+
+\subsection{Akademik Temel}
+
+Sistem, dağınık akademik literatürü yapılandırılmış bir bilgi tabanına dönüştürmektedir. Her yorum, en az bir akademik kaynağa dayandırılmakta ve güven seviyesi belirtilmektedir. Bu yaklaşım, projektif testlerin öznel yorumlama sorununu kısmen ele almaktadır.
+
+Buck (1948), Hammer (1958), Machover (1949), Koch (1952), Jolles (1971) ve Koppitz (1968) gibi temel kaynaklar, sistemin kuramsal çerçevesini oluşturmaktadır. Bu kaynakların sistematik entegrasyonu, NIDA'yı ``kanıta dayalı'' bir yaklaşıma yaklaştırmaktadır.
+
+\subsection{Şeffaflık}
+
+NIDA, çelişkili akademik görüşleri gizlememekte; aksine, kullanıcıya şeffaf biçimde sunmaktadır. Örneğin, bir göstergenin farklı araştırmacılar tarafından farklı yorumlandığı durumlarda, tüm görüşler kaynaklarıyla birlikte gösterilmektedir. Bu yaklaşım, Lilienfeld ve ark.'nın (2000) projektif testlere yönelik eleştirilerini karşılamaktadır.
+
+\subsection{Erişilebilirlik}
+
+Web tabanlı yapı, coğrafi konumdan bağımsız erişim imkânı sunmaktadır. Özellikle kırsal bölgelerde görev yapan okul psikolojik danışmanları için bu özellik kritik öneme sahiptir. Türkçe ve İngilizce dil desteği, sistemin farklı bağlamlarda kullanılabilirliğini artırmaktadır.
+
+\subsection{Etik Duyarlılık}
+
+Sistemin sınırları açıkça belirtilmekte, tanı koyma iddiasından kaçınılmakta ve profesyonel yönlendirme teşvik edilmektedir. APA (2017) ve TPD (2004) etik ilkeleri ile uyum sağlanmıştır. Bu yaklaşım, PDR alanının temel değerleri ile tutarlıdır.
+
+\subsection{Teknolojik Yenilik}
+
+NIDA, Türkiye'de HTP analizi için geliştirilen ilk yapay zekâ destekli karar destek sistemidir. Çok modlu büyük dil modeli (Gemini 2.0 Flash) kullanımı, görsel ve metinsel analizi birleştirmektedir.
+
+\section{Zayıf Yönler ve Sınırlılıklar}
+
+\subsection{Ampirik Doğrulama Eksikliği}
+
+Sistemin klinik etkinliği kapsamlı ampirik yöntemlerle henüz test edilmemiştir. Bununla birlikte, geliştirme sürecinde gerçekleştirilen sınırlı kapsamlı bir pilot değerlendirme (bkz. Bölüm 8, Ön Pilot Değerlendirme), sistemin temel işlevselliğine ilişkin olumlu ön bulgular ortaya koymuştur. Sekiz örnek çizim üzerinde yürütülen bu gayri resmî incelemede, sistem çıktılarının alan uzmanı görüşleriyle genel itibarıyla örtüştüğü gözlemlenmiştir. Cohen's kappa katsayısı ile desteklenen sistematik doğrulama çalışmaları ise gelecek araştırma gündeminin öncelikli maddesini oluşturmaktadır.
+
+\subsection{Yapay Zekâ Sınırlılıkları}
+
+Büyük dil modelleri, halüsinasyon (uydurma bilgi üretme) riski taşımaktadır (Bender ve ark., 2021). Her ne kadar bilgi tabanı sınırlaması uygulanmış olsa da, modelin prompt dışı bilgi üretme ihtimali tamamen ortadan kaldırılamamaktadır.
+
+\subsection{Kültürel Bağlam}
+
+HTP yorumlama kurallarının çoğu Batı kültürlerinde geliştirilmiştir. Türk kültürel bağlamına uyarlama çalışmaları sınırlıdır. Örneğin, aile yapısı, ev mimarisi ve doğa algısı konularında kültürel farklılıklar yorumlamaları etkileyebilir.
+
+\subsection{Projektif Testlerin Geçerliliği Tartışması}
+
+Projektif çizim testlerinin psikometrik özellikleri akademik literatürde tartışmalıdır. Lilienfeld ve ark. (2000), bu testlerin geçerliliğine ilişkin ciddi sorular ortaya koymuştur. NIDA, bu tartışmayı çözmemekte, yalnızca mevcut literatürü sunmaktadır.
+
+\section{Alanyazınla Karşılaştırma}
+
+NIDA, uluslararası literatürdeki benzer çalışmalarla karşılaştırıldığında:
+
+\begin{table}[H]
+\centering
+\caption{NIDA ve Benzer Çalışmaların Karşılaştırması}
+\label{tab:karsilastirma}
+\begin{tabular}{p{3cm}p{3cm}p{3cm}p{3.5cm}}
+\toprule
+\textbf{Özellik} & \textbf{NIDA} & \textbf{PICK (2024)} & \textbf{Chen ve ark. (2023)} \\
+\midrule
+Yaklaşım & Kural tabanlı + MLLM & Fine-tuned MLLM & CNN + Derin öğrenme \\
+Model & Gemini 2.0 Flash & GPT-4V & YOLOv5 \\
+Dil Desteği & Türkçe + İngilizce & İngilizce & Çince \\
+Hedef Kullanıcı & Okul danışmanları & Araştırmacılar & Klinisyenler \\
+Tanı İddiası & Hayır (KDS) & Kısmen & Evet \\
+Kaynak Gösterimi & Her yorumda & Sınırlı & Yok \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{PICK ile Karşılaştırma}
+
+Kim ve ark. (2024) tarafından geliştirilen PICK sistemi, GPT-4V'yi HTP analizi için kullanmıştır. NIDA'dan farklı olarak, PICK model fine-tuning yaklaşımı benimsemiştir. NIDA ise prompt mühendisliği ve kural tabanlı bilgi tabanı kullanmaktadır.
+
+\subsection{Türkiye Bağlamında Özgünlük}
+
+NIDA, Türkiye'de PDR alanına yönelik ilk dijital çizim analiz aracı olma özelliği taşımaktadır. Türkçe dil desteği ve yerel ihtiyaçlara uygun tasarım, sistemin özgün katkılarını oluşturmaktadır.
+
+\section{PDR Alanına Yansımalar}
+
+Bu çalışma, PDR alanında teknoloji entegrasyonunun potansiyel ve sınırlılıklarını ortaya koymaktadır:
+
+\subsection{Fırsatlar}
+
+\begin{enumerate}
+  \item Yapay zekâ, rutin değerlendirme görevlerinde psikolojik danışmanlara destek sunabilir
+  \item Dijital araçlar, erişilebilirliği ve standardizasyonu artırabilir
+  \item Akademik literatürün sistematize edilmesi, kanıta dayalı uygulamayı destekleyebilir
+\end{enumerate}
+
+\subsection{Riskler}
+
+\begin{enumerate}
+  \item Teknolojiye aşırı güven, profesyonel yargının yerini alma tehlikesi taşımaktadır
+  \item Yapay zekâ hataları, yanlış değerlendirmelere yol açabilir
+  \item Gizlilik ve veri güvenliği endişeleri mevcuttur
+\end{enumerate}
+
+\subsection{Denge}
+
+Karar destek sistemleri, profesyonel değerlendirmeyi desteklemeli, yerini almamalıdır. Luxton (2014), yapay zekânın ruh sağlığı hizmetlerinde ``augmented intelligence'' (güçlendirilmiş zekâ) olarak konumlandırılması gerektiğini vurgulamıştır.
+
+\section{Gelecek Araştırma Önerileri}
+
+\begin{enumerate}
+  \item \textbf{Ampirik Doğrulama:} Uzman paneli ile karşılaştırmalı doğrulama çalışmaları
+  \item \textbf{Kültürel Uyarlama:} Türk kültürüne özgü yorumlama normlarının geliştirilmesi
+  \item \textbf{Klinik Etkinlik:} Randomize kontrollü çalışmalar ile etkinlik değerlendirmesi
+  \item \textbf{Kullanıcı Deneyimi:} Psikolojik danışmanların deneyimlerinin nitel araştırması
+  \item \textbf{Teknolojik Gelişim:} Model fine-tuning ve performans optimizasyonu
+\end{enumerate}
+
+\newpage

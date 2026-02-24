@@ -1,0 +1,156 @@
+% ============================================================
+% NIDA Akademik Rapor - LaTeX Stil Tanımlamaları
+% ============================================================
+
+% Liste formatı (babel'den ÖNCE yüklenmeli — babel/arabic* çakışması için)
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep, topsep=5pt}
+\setlist[enumerate]{noitemsep, topsep=5pt}
+
+% Türkçe dil desteği
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[turkish]{babel}
+
+% Sayfa düzeni
+\usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Görsel ve tablo
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% Kod ve UML gösterimi
+\usepackage{listings}
+\usepackage[svgnames]{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,skins,breakable}
+
+% Matematik (amsmath must be loaded before cleveref)
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Referans ve linkler
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage[nameinlink]{cleveref}
+
+% Başlık formatı
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{0pt}{40pt}
+
+% Alt başlık formatları
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+% Paragraf ayarları
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{6pt}
+
+% Sayfa numaralandırma
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{\leftmark}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% UML kutuları için
+\newtcblisting{umlcode}{
+  colback=gray!5,
+  colframe=gray!75,
+  listing only,
+  left=5pt,
+  right=5pt,
+  top=5pt,
+  bottom=5pt,
+  fonttitle=\bfseries,
+  breakable
+}
+
+% Alıntı kutusu
+\newtcolorbox{quotebox}{
+  colback=blue!5,
+  colframe=blue!75,
+  left=10pt,
+  right=10pt,
+  top=5pt,
+  bottom=5pt,
+  breakable
+}
+
+% Uyarı kutusu
+\newtcolorbox{warningbox}{
+  colback=orange!10,
+  colframe=orange!75,
+  left=10pt,
+  right=10pt,
+  top=5pt,
+  bottom=5pt,
+  title={\textbf{Önemli Uyarı}},
+  breakable
+}
+
+% Kod stili
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  backgroundcolor=\color{gray!10},
+  keywordstyle=\color{blue},
+  commentstyle=\color{green!50!black},
+  stringstyle=\color{red!70!black},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  numbersep=5pt
+}
+
+% TypeScript/JavaScript için
+\lstdefinelanguage{TypeScript}{
+  keywords={const, let, var, function, return, if, else, for, while, class, interface, type, export, import, from, async, await, new, this, extends, implements},
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]",
+  sensitive=true
+}
+
+% Hyperref ayarları
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!70!black,
+  citecolor=green!50!black,
+  urlcolor=blue!70!black,
+  pdftitle={NIDA: Yapay Zekâ Destekli Çocuk Çizimi Analiz Sistemi},
+  pdfauthor={Nida ÜSTÜN},
+  pdfsubject={Psikolojik Danışmanlık ve Rehberlik},
+  pdfkeywords={HTP, yapay zeka, çocuk çizimi, PDR}
+}
+
+% Tablo ve şekil numaralandırma
+\captionsetup[table]{labelfont=bf, textfont=it}
+\captionsetup[figure]{labelfont=bf, textfont=it}
+
+% Dipnot ayarları
+\usepackage[bottom]{footmisc}
+
+% Bibliyografya stili
+\usepackage{natbib}
+\bibliographystyle{apalike}
+
+% Kelime kesme ayarları (Türkçe)
+\hyphenation{psi-ko-lo-jik da-nış-man-lık reh-ber-lik pro-jek-tif}

@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(mkdir:*)",
+      "Bash(pdflatex:*)",
+      "Bash(npx create-next-app@latest:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)",
+      "Bash(pkill:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(gh auth status:*)",
+      "Bash(gh repo create:*)",
+      "Bash(npx vercel:*)",
+      "Bash(pdfinfo:*)",
+      "Bash(ls:*)",
+      "WebFetch(domain:app-bykkkg9wn-baristiran.vercel.app)",
+      "WebFetch(domain:app-navy-sigma.vercel.app)",
+      "WebFetch(domain:nida-kappa.vercel.app)",
+      "WebFetch(domain:app-baristiran.vercel.app)",
+      "WebFetch(domain:app-l3s2yi8jr-baristiran.vercel.app)",
+      "Bash(cat:*)",
+      "Bash(curl:*)",
+      "Bash(TOKEN=\"vca_6O7XPfYi2yR3oxb7MaRWK3m9g5j7OssersdX8zSoCB9pasS3iD0rZs8B\" curl -s -H \"Authorization: Bearer $TOKEN\" \"https://api.vercel.com/v9/projects/prj_FNbCYILOrg3mTrqErkTrGhgb0osk\")",
+      "Bash(TOKEN=\"vca_6O7XPfYi2yR3oxb7MaRWK3m9g5j7OssersdX8zSoCB9pasS3iD0rZs8B\" TEAM_ID=\"team_xDzzVmUoo04pJLBrLdavk3Er\" curl -s -H \"Authorization: Bearer $TOKEN\" \"https://api.vercel.com/v2/teams/$TEAM_ID\")",
+      "Bash(TOKEN=\"vca_6O7XPfYi2yR3oxb7MaRWK3m9g5j7OssersdX8zSoCB9pasS3iD0rZs8B\")",
+      "Bash(TOKEN=\"vca_6O7XPfYi2yR3oxb7MaRWK3m9g5j7OssersdX8zSoCB9pasS3iD0rZs8B\" curl -s -X PATCH -H \"Authorization: Bearer $TOKEN\" -H \"Content-Type: application/json\" -d '{\"\"\"\"ssoProtection\"\"\"\":null}' \"https://api.vercel.com/v9/projects/prj_FNbCYILOrg3mTrqErkTrGhgb0osk\")",
+      "Bash(\"https://api.vercel.com/v9/projects/prj_FNbCYILOrg3mTrqErkTrGhgb0osk\")",
+      "Bash(python3:*)",
+      "Bash(npx tsc:*)",
+      "Bash(git init:*)",
+      "Bash(git push:*)",
+      "Bash(git remote set-url:*)"
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd privacy and terms pages, update UI\n\n- Add /privacy page with privacy policy content\n- Add /terms page with terms of service content\n- Update homepage and other pages\n- Add academic report PDF\n- Add vercel.json configuration\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push)"
+    ]
+  }
+}

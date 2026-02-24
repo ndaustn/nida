@@ -1,0 +1,224 @@
+% ============================================================
+% BÖLÜM 8: YÖNTEM
+% ============================================================
+
+\chapter{YÖNTEM}
+
+\section{Çalışma Modeli}
+
+Bu çalışma, proje temelli bir araştırma modelini benimsemektedir. Design Science Research (DSR) metodolojisi çerçevesinde, bir yazılım artefaktı (NIDA sistemi) geliştirilmiştir (Hevner ve ark., 2004). DSR, pratik sorunların çözümü için yenilikçi artefaktların tasarımını ve değerlendirmesini içermektedir.
+
+Araştırma, aşağıdaki aşamalardan oluşmaktadır:
+
+\begin{enumerate}
+  \item \textbf{Problem Tanımlama:} Okul psikolojik danışmanlarının çocuk çizimi değerlendirmesindeki ihtiyaçlarının belirlenmesi
+  \item \textbf{Çözüm Tasarımı:} HTP testine ilişkin akademik kaynakların sistematik derlenmesi ve sistem mimarisinin belirlenmesi
+  \item \textbf{Artefakt Geliştirme:} Web uygulamasının kodlanması ve test edilmesi
+  \item \textbf{Değerlendirme:} Fonksiyonel testler ve kullanılabilirlik değerlendirmesi
+  \item \textbf{İletişim:} Teknik ve kullanıcı belgelerinin hazırlanması
+\end{enumerate}
+
+\section{Hedef Kitle}
+
+Sistemin birincil hedef kitlesi şu şekilde tanımlanmıştır:
+
+\begin{table}[H]
+\centering
+\caption{NIDA Hedef Kullanıcı Profili}
+\label{tab:hedefkitle}
+\begin{tabular}{p{4cm}p{9cm}}
+\toprule
+\textbf{Özellik} & \textbf{Açıklama} \\
+\midrule
+Meslek & Okul psikolojik danışmanları, rehber öğretmenler \\
+Eğitim & PDR lisans veya yüksek lisans \\
+Deneyim & Çocuklarla çalışma deneyimi (tercihen 1+ yıl) \\
+Teknoloji & Temel dijital okuryazarlık, web tarayıcı kullanımı \\
+Bağlam & İlkokul ortamı, rehberlik servisi \\
+Yaş Grubu & Değerlendirilen çocuklar: 5-12 yaş \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Kullanıcı Gereksinimleri}
+
+Hedef kullanıcıların ihtiyaçları, PDR literatürü ve alan uzmanları görüşleri doğrultusunda belirlenmiştir:
+
+\begin{enumerate}
+  \item Hızlı ve erişilebilir çizim analizi
+  \item Akademik kaynaklara dayalı yorumlar
+  \item Türkçe dil desteği
+  \item Kolay kullanılabilir arayüz
+  \item Güvenli veri saklama
+  \item Raporlama imkânı
+  \item Mobil uyumluluk
+\end{enumerate}
+
+\section{Uygulama Süreci}
+
+Sistemin kullanım süreci aşağıdaki adımlardan oluşmaktadır:
+
+\begin{enumerate}
+  \item \textbf{Kayıt ve Giriş:} Kullanıcı, profesyonel e-posta adresi ile sisteme kayıt olur. Firebase Authentication ile güvenli giriş sağlanır.
+
+  \item \textbf{Çizim Yükleme:} HTP çiziminin fotoğrafı sisteme yüklenir. Desteklenen formatlar: JPEG, PNG. Maksimum dosya boyutu: 10 MB.
+
+  \item \textbf{Bilgi Girişi:} Çocuğun yaşı (zorunlu), cinsiyeti (opsiyonel) ve çizim türü (ev/ağaç/insan/tam HTP) belirtilir.
+
+  \item \textbf{Analiz:} Sistem, çizimi Gemini 2.0 Flash modeli ile analiz eder. Bilgi tabanından ilgili kurallar yüklenir.
+
+  \item \textbf{Sonuç:} Akademik kaynaklara dayalı yorumlar, güven seviyeleri (yüksek/orta/düşük) ve öneriler sunulur.
+
+  \item \textbf{Raporlama:} İstenirse analiz sonuçları PDF formatında raporlanır.
+\end{enumerate}
+
+\begin{figure}[h!]
+\centering
+\begin{tcolorbox}[colback=gray!5, colframe=gray!75, width=0.9\textwidth]
+\begin{verbatim}
++-------------+     +-------------+     +-------------+
+|  Kullanıcı  | --> |   Çizim     | --> |   Bilgi     |
+|   Girişi    |     |   Yükleme   |     |   Girişi    |
++-------------+     +-------------+     +-------------+
+                                              |
+                                              v
++-------------+     +-------------+     +-------------+
+|   Rapor     | <-- |   Sonuç     | <-- |   Analiz    |
+|   İndirme   |     |   Gösterimi |     |   İşlemi    |
++-------------+     +-------------+     +-------------+
+\end{verbatim}
+\end{tcolorbox}
+\caption{NIDA Kullanım Akış Şeması}
+\label{fig:akis}
+\end{figure}
+
+\section{Veri Toplama ve İşleme}
+
+\subsection{Akademik Literatür Derleme}
+
+Bu çalışmada, HTP yorumlama kuralları için sistematik literatür taraması yapılmıştır:
+
+\begin{enumerate}
+  \item \textbf{Veritabanları:} PsycINFO, ERIC, Google Scholar, Web of Science
+  \item \textbf{Anahtar Kelimeler:} ``House-Tree-Person'', ``HTP test'', ``projective drawing'', ``child assessment'', ``çocuk çizimi''
+  \item \textbf{Dahil Etme Kriterleri:}
+  \begin{itemize}
+    \item Hakemli dergilerde yayınlanmış makaleler
+    \item Akademik kitaplar ve kitap bölümleri
+    \item 1948-2024 yılları arasında yayınlanmış
+    \item İngilizce veya Türkçe
+  \end{itemize}
+  \item \textbf{Dışlama Kriterleri:}
+  \begin{itemize}
+    \item Popüler psikoloji kaynakları
+    \item Doğrulanmamış internet kaynakları
+    \item Tam metne erişilemeyen çalışmalar
+  \end{itemize}
+\end{enumerate}
+
+\subsection{Bilgi Tabanı Yapılandırma}
+
+Derlenen kurallar, yapılandırılmış bir JSON şemasına dönüştürülmüştür:
+
+\begin{lstlisting}[language=TypeScript, caption=Bilgi Tabanı Veri Yapısı]
+interface KBRule {
+  id: string;
+  category: 'house' | 'tree' | 'person' | 'general';
+  element: string;
+  indicator: string;
+  interpretation: {
+    tr: string;
+    en: string;
+  };
+  confidence: 'high' | 'moderate' | 'low';
+  evidenceStrength: 'strong' | 'moderate' | 'weak';
+  ageRange: {
+    min: number;
+    max: number;
+  };
+  sources: AcademicSource[];
+  alternativeViews?: AlternativeView[];
+}
+\end{lstlisting}
+
+\subsection{Kullanıcı Verileri}
+
+Kullanıcıların sisteme yükleyeceği çizimler ve analiz sonuçları, Firebase altyapısında güvenli biçimde saklanmaktadır:
+
+\begin{itemize}
+  \item \textbf{Depolama:} Firebase Storage (görüntüler)
+  \item \textbf{Veritabanı:} Firebase Firestore (metadata, sonuçlar)
+  \item \textbf{Şifreleme:} Aktarım sırasında TLS 1.3, depolamada AES-256
+  \item \textbf{Erişim Kontrolü:} Kullanıcı bazlı izolasyon
+  \item \textbf{Veri Saklama:} Kullanıcı isteğine göre silme imkânı
+\end{itemize}
+
+\section{Etik Hususlar}
+
+Çalışma, aşağıdaki etik ilkelere bağlı kalınarak yürütülmüştür:
+
+\subsection{PDR Etik İlkeleri}
+
+\begin{itemize}
+  \item \textbf{Yetkinlik:} Sistemin sınırlarının açıkça belirtilmesi
+  \item \textbf{Zarar Vermeme:} Tanı koymama prensibinin vurgulanması
+  \item \textbf{Gizlilik:} Çocuk verilerinin korunması (KVKK uyumu)
+  \item \textbf{Özerklik:} Profesyonel yargının desteklenmesi, yerini almama
+  \item \textbf{Adalet:} Erişilebilir ve kapsayıcı tasarım
+\end{itemize}
+
+\subsection{Yapay Zekâ Etiği}
+
+UNESCO (2021) yapay zekâ etiği ilkeleri doğrultusunda:
+
+\begin{itemize}
+  \item \textbf{Şeffaflık:} Sistemin çalışma prensiplerinin açıklanması
+  \item \textbf{Hesap Verebilirlik:} Sorumluluk reddi ve kullanıcı bilgilendirmesi
+  \item \textbf{Önyargı Farkındalığı:} Kültürel önyargı sınırlılıklarının belirtilmesi
+  \item \textbf{İnsan Kontrolü:} Yapay zekânın karar verici değil, destek aracı olması
+\end{itemize}
+
+\subsection{Veri Koruma}
+
+\begin{itemize}
+  \item \textbf{KVKK Uyumu:} Kişisel Verilerin Korunması Kanunu'na uygunluk
+  \item \textbf{Aydınlatılmış Onay:} Kullanıcı sözleşmesi ve gizlilik politikası
+  \item \textbf{Veri Minimizasyonu:} Yalnızca gerekli verilerin toplanması
+  \item \textbf{Çocuk Verilerinin Korunması:} BM Çocuk Hakları Sözleşmesi uyumu
+\end{itemize}
+
+\section{Geçerlilik ve Güvenilirlik}
+
+\subsection{İç Geçerlilik}
+
+\begin{itemize}
+  \item Bilgi tabanı kuralları, birden fazla akademik kaynakla çapraz kontrol edilmiştir
+  \item Yorumlama kuralları, güven seviyelerine göre sınıflandırılmıştır
+  \item Çelişkili görüşler şeffaf biçimde sunulmaktadır
+\end{itemize}
+
+\subsection{Dış Geçerlilik}
+
+\begin{itemize}
+  \item Sistem, farklı yaş grupları ve çizim türleri için test edilmiştir
+  \item Türkçe ve İngilizce çıktılar karşılaştırılmıştır
+  \item Kullanılabilirlik açısından iteratif iyileştirmeler yapılmıştır
+\end{itemize}
+
+\subsection{Ön Pilot Değerlendirme}
+
+Sistemin işlevsel güvenilirliğini ön düzeyde sınamak amacıyla, geliştirme sürecinin son aşamasında sınırlı kapsamlı bir pilot değerlendirme gerçekleştirilmiştir. Bu çerçevede, farklı yaş gruplarına ait (6--11 yaş arası) sekiz adet HTP çizimi sisteme yüklenmiş ve elde edilen analiz çıktıları incelenmiştir. Çizimler; normal gelişim örüntüsü sergileyen, aşırı basitleştirilmiş ve endişe işaretleri içerdiği bilinen anonim örnek materyallerden seçilmiştir.
+
+Sistem çıktıları, HTP literatürüne hâkim bir alan uzmanıyla (PDR lisansüstü düzeyi) gayri resmî biçimde karşılaştırılmıştır. Bu karşılaştırma, sistemin belirlenen endişe göstergelerini büyük ölçüde doğru sınıflandırdığını ve kaynak atıflarının akademik literatürle tutarlı olduğunu ortaya koymuştur. Bununla birlikte, yaşa özgü gelişimsel normlarla ilgili bazı sınır durumlarda sistemin orta güven seviyesi ürettiği ve daha ihtiyatlı bir dil benimsediği gözlemlenmiştir.
+
+Bu pilot değerlendirme, resmî bir psikometrik doğrulama niteliği taşımamakta; sistem çıktılarının klinik etkinliğini garanti etmemektedir. Bununla birlikte, bilgi tabanı bütünlüğü ve prompt mühendisliği yaklaşımının işlevselliği konusunda ilk bulgular sunmaktadır. Uzman paneli değerlendirmesi, Cohen's kappa güvenilirlik analizi ve klinik örneklem kullanımını içeren kapsamlı doğrulama çalışması, ileriki araştırmaların öncelikli gündemini oluşturmaktadır (bkz. Bölüm 11).
+
+\subsection{Gelecek Doğrulama Çalışmaları}
+
+\begin{itemize}
+  \item Uzman paneli ile karşılaştırmalı doğrulama
+  \item Kullanıcı memnuniyeti araştırması
+  \item Klinik etkinlik değerlendirmesi (RCT)
+\end{itemize}
+
+\newpage

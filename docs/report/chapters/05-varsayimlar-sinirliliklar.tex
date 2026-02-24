@@ -1,0 +1,75 @@
+% ============================================================
+% BÖLÜM 5: VARSAYIMLAR VE SINIRLILIKLAR
+% ============================================================
+
+\chapter{VARSAYIMLAR VE SINIRLILIKLAR}
+
+\section{Temel Varsayımlar}
+
+Bu çalışma, aşağıdaki varsayımlar üzerine inşa edilmiştir:
+
+\begin{enumerate}
+  \item \textbf{Akademik Literatürün Geçerliliği:} HTP testinin yorumlama kurallarına ilişkin akademik literatür, belirli sınırlılıklarına rağmen, çocuk psikolojisi hakkında anlamlı bilgiler sunmaktadır. Lilienfeld ve ark. (2000), projektif testlerin psikometrik özellikleri konusunda eleştirel olmakla birlikte, bu testlerin klinik formülasyon süreçlerinde yararlı olabileceğini kabul etmişlerdir.
+
+  \item \textbf{Teknolojik Yeterlilik:} Hedef kullanıcıların (okul psikolojik danışmanları) temel düzeyde dijital okuryazarlığa sahip olduğu varsayılmaktadır. TÜİK (2023) verilerine göre, Türkiye'de 25-54 yaş arası bireylerin \%85'i internet kullanmaktadır.
+
+  \item \textbf{Etik Kullanım:} Kullanıcıların sistemi etik ilkeler çerçevesinde, tanı aracı olarak değil, karar destek sistemi olarak kullanacağı varsayılmaktadır. Bu varsayım, profesyonel sorumluluk ve etik eğitimin önemine işaret etmektedir (Corey, Corey ve Callanan, 2019).
+
+  \item \textbf{Yapay Zekâ Kapasitesi:} Çok modlu dil modellerinin, yapılandırılmış bir bilgi tabanı ile sınırlandırıldığında, anlamlı ve tutarlı yorumlar üretebileceği varsayılmaktadır. GPT-4V ve Gemini gibi modeller, görsel akıl yürütme görevlerinde insana yakın performans sergilemektedir (OpenAI, 2023; Google, 2024).
+
+  \item \textbf{Kültürel Uygulanabilirlik:} Batı kökenli HTP yorumlama kurallarının, Türk çocukları için de belirli düzeyde geçerli olduğu varsayılmaktadır. Ancak bu varsayım, kültürlerarası doğrulama çalışmalarıyla test edilmelidir.
+\end{enumerate}
+
+\section{Çalışmanın Sınırlılıkları}
+
+\subsection{Metodolojik Sınırlılıklar}
+
+\begin{enumerate}
+  \item \textbf{Ampirik Doğrulama Eksikliği:} Bu çalışma, sistemin geliştirilmesi ve teknik altyapısının oluşturulmasını kapsamaktadır. Sistemin klinik etkinliğinin değerlendirilmesi, gelecek çalışmalara bırakılmıştır. Randomize kontrollü çalışmalar (RCT), sistemin etkinliğini doğrulamak için gereklidir.
+
+  \item \textbf{Veri Seti Yokluğu:} Sistem, özel bir veri seti ile eğitilmemiş; tamamen mevcut akademik literatüre dayalı kural tabanlı bir yaklaşım benimsemiştir. Makine öğrenmesi tabanlı sistemler, genellikle büyük veri setleri ile eğitilmektedir; ancak HTP alanında etiketlenmiş veri setleri sınırlıdır.
+
+  \item \textbf{Karşılaştırmalı Değerlendirme:} Sistemin uzman değerlendirmeleri ile karşılaştırmalı performans analizi bu çalışmanın kapsamı dışındadır. Gelecekte, uzman panelleri ile karşılaştırmalı doğrulama çalışmaları yapılmalıdır.
+
+  \item \textbf{Örneklem Temsiliyet:} Bilgi tabanı, ağırlıklı olarak Kuzey Amerika ve Avrupa'da yürütülen çalışmalara dayanmaktadır. Bu durum, kültürel temsiliyet açısından bir sınırlılık oluşturmaktadır.
+\end{enumerate}
+
+\subsection{Teknolojik Sınırlılıklar}
+
+\begin{enumerate}
+  \item \textbf{Yapay Zekâ Hataları:} Büyük dil modelleri, halüsinasyon (uydurma bilgi üretme) riski taşımaktadır (Bender ve ark., 2021). Sistem, bu riski azaltmak için bilgi tabanı sınırlaması uygulamakta; ancak tamamen ortadan kaldıramamaktadır.
+
+  \item \textbf{Görsel Analiz Sınırlılıkları:} Çizim kalitesi, fotoğraf netliği ve aydınlatma koşulları, analiz doğruluğunu etkileyebilmektedir. Kullanıcılara çizim fotoğrafı çekme kılavuzu sağlanmaktadır.
+
+  \item \textbf{API Bağımlılığı:} Sistem, üçüncü taraf API hizmetlerine (Google Gemini) bağımlıdır. Bu durum, hizmet sürekliliği ve maliyet açısından risk oluşturmaktadır.
+
+  \item \textbf{İnternet Bağlantısı Gerekliliği:} Sistem, çevrimiçi çalışmaktadır. İnternet erişimi olmayan ortamlarda kullanılamamaktadır.
+
+  \item \textbf{Veri Güvenliği:} Bulut tabanlı sistemler, veri güvenliği riskleri taşımaktadır. KVKK ve GDPR uyumluluğu sağlanmış olsa da, mutlak güvenlik garanti edilememektedir.
+\end{enumerate}
+
+\subsection{Kapsam Sınırlılıkları}
+
+\begin{enumerate}
+  \item \textbf{Yaş Grubu:} Sistem, 5-12 yaş aralığı için optimize edilmiştir. Bu yaş aralığı dışındaki değerlendirmeler için uygun değildir. Ergenler ve yetişkinler için farklı yorumlama kuralları gereklidir (Hammer, 1958).
+
+  \item \textbf{Test Türü:} Yalnızca HTP testi desteklenmektedir. Diğer projektif testler (Rorschach, TAT, Bender-Gestalt vb.) kapsam dışıdır.
+
+  \item \textbf{Kültürel Bağlam:} Yorumlama kuralları ağırlıklı olarak Batı literatürüne dayanmaktadır. Türk kültürel bağlamına özgü uyarlamalar sınırlıdır. Örneğin, aile yapısı, ev mimarisi ve doğa algısı kültürler arasında farklılık gösterebilmektedir.
+
+  \item \textbf{Klinik Popülasyonlar:} Sistem, genel popülasyon için tasarlanmıştır. Klinik tanısı olan çocuklar (otizm spektrum bozukluğu, zihinsel engel vb.) için farklı normlar gereklidir.
+
+  \item \textbf{Dil Desteği:} Şu anda yalnızca Türkçe ve İngilizce desteklenmektedir. Diğer diller gelecekte eklenebilir.
+\end{enumerate}
+
+\subsection{Etik Sınırlılıklar}
+
+\begin{enumerate}
+  \item \textbf{Algoritmik Önyargı:} Yapay zekâ sistemleri, eğitim verilerindeki önyargıları yansıtabilmektedir (Mehrabi ve ark., 2021). HTP literatürünün kültürel önyargıları, sisteme de yansıyabilir.
+
+  \item \textbf{Gizlilik Endişeleri:} Çocuk çizimlerinin dijital ortamda saklanması, gizlilik endişeleri doğurmaktadır. Ebeveyn onayı ve veri minimizasyonu ilkeleri uygulanmaktadır.
+
+  \item \textbf{Sorumluluk Belirsizliği:} Yapay zekâ destekli sistemlerde, hatalı değerlendirmelerin sorumluluğunun kime ait olduğu belirsizlik taşımaktadır. Sistem, sorumluluk reddi ile bu riski kullanıcıya aktarmaktadır.
+\end{enumerate}
+
+\newpage

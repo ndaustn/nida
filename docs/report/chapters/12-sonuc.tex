@@ -1,0 +1,103 @@
+% ============================================================
+% BÖLÜM 12: SONUÇ
+% ============================================================
+
+\chapter{SONUÇ}
+
+Bu çalışmada, okul psikolojik danışmanlarının House-Tree-Person (HTP) çizimlerini değerlendirme süreçlerini desteklemek amacıyla yapay zekâ tabanlı bir karar destek sistemi (NIDA) geliştirilmiştir.
+
+\section{Hedeflere Ulaşma Düzeyi}
+
+Çalışmanın başlangıcında belirlenen hedefler şu düzeylerde gerçekleştirilmiştir:
+
+\begin{enumerate}
+  \item \textbf{Akademik Bilgi Tabanı Oluşturma:}
+  \begin{itemize}
+    \item 200'ü aşkın yorumlama kuralı yapılandırıldı
+    \item 7 temel kaynak (Buck, Hammer, Machover, Koch, Jolles, Koppitz, Bolander) sistematize edildi
+    \item Güven seviyeleri ve çelişkili görüşler dokümante edildi
+    \item Yaş aralıklarına göre kategorizasyon yapıldı
+    \item \textit{Durum: Tamamlandı}
+  \end{itemize}
+
+  \item \textbf{Teknolojik Altyapı Geliştirme:}
+  \begin{itemize}
+    \item Next.js 16 tabanlı web uygulaması geliştirildi
+    \item Firebase entegrasyonu (Auth, Firestore, Storage) sağlandı
+    \item Gemini 2.0 Flash API bağlantısı kuruldu
+    \item Responsive kullanıcı arayüzü tasarlandı
+    \item Vercel üzerinde deployment gerçekleştirildi
+    \item \textit{Durum: Tamamlandı}
+  \end{itemize}
+
+  \item \textbf{Etik Çerçeve Belirleme:}
+  \begin{itemize}
+    \item Sistemin sınırları açıkça tanımlandı
+    \item Sorumluluk reddi metinleri oluşturuldu
+    \item Veri koruma politikaları belirlendi (KVKK uyumu)
+    \item APA ve TPD etik ilkeleri ile uyum sağlandı
+    \item \textit{Durum: Tamamlandı}
+  \end{itemize}
+
+  \item \textbf{Kullanılabilirlik Sağlama:}
+  \begin{itemize}
+    \item Sezgisel kullanıcı arayüzü tasarlandı
+    \item Türkçe ve İngilizce dil desteği sağlandı
+    \item Yorumlar anlaşılır formatta sunuldu
+    \item Mobil uyumluluk sağlandı
+    \item \textit{Durum: Tamamlandı}
+  \end{itemize}
+
+  \item \textbf{Ampirik Doğrulama:}
+  \begin{itemize}
+    \item Klinik etkinlik değerlendirmesi henüz yapılmadı
+    \item Uzman karşılaştırması planlanıyor
+    \item \textit{Durum: Beklemede (Gelecek çalışma)}
+  \end{itemize}
+\end{enumerate}
+
+\section{PDR Alanına Katkı}
+
+NIDA, psikolojik danışmanlık ve rehberlik alanına şu katkıları sunmaktadır:
+
+\subsection{Teorik Katkılar}
+
+NIDA, teorik açıdan, dağınık projektif test literatürünü yapılandırılmış ve erişilebilir bir formata dönüştürerek alana katkı sunmaktadır. Yapay zekânın PDR alanındaki potansiyel kullanımlarına somut bir örnek oluşturması ve karar destek sistemleri kavramını PDR bağlamına uyarlaması da çalışmanın özgün teorik katkıları arasında yer almaktadır. Teknoloji entegrasyonunun etik boyutlarına ilişkin tartışma ise ileriki araştırmalar için bir zemin hazırlamaktadır.
+
+\subsection{Pratik Katkılar}
+
+Pratik açıdan ise sistem, okul psikolojik danışmanlarına anlık destek aracı sunmakta ve dağınık akademik literatüre kolay erişim imkânı sağlamaktadır. Değerlendirme süreçlerinde zaman tasarrufu potansiyeli taşıması ve Türkçe dil desteği ile yerel ihtiyaçlara doğrudan yanıt vermesi, NIDA'nın sahaya dönük başlıca katkılarını oluşturmaktadır.
+
+\section{Araştırma Sorularının Yanıtlanması}
+
+\begin{enumerate}
+  \item \textbf{HTP yorumlama literatürü nasıl yapılandırılabilir?}
+
+  Akademik kaynaklar, JSON tabanlı bir şema ile yapılandırılmıştır. Her kural; öğe, gösterge, yorum, güven seviyesi, kaynaklar ve alternatif görüşler içermektedir. Bu yapı, sistematik erişim ve tutarlı sunumu mümkün kılmaktadır.
+
+  \item \textbf{MLLM'ler çizim analizi için nasıl optimize edilebilir?}
+
+  Prompt mühendisliği ve bilgi tabanı sınırlaması ile MLLM'ler, yapılandırılmış ve kaynak destekli yorumlar üretebilmektedir. Türkçe prompt yazımı, dil tutarlılığını sağlamıştır.
+
+  \item \textbf{Çelişkili yorumlar nasıl sunulabilir?}
+
+  Her yoruma ``alternativeViews'' alanı eklenerek, çelişkili akademik görüşler kaynaklarıyla birlikte şeffaf biçimde sunulmaktadır.
+
+  \item \textbf{Yapay zekâ sistemleri PDR etiği ile nasıl uyumlu hale getirilebilir?}
+
+  Sistemin sınırlarının açıkça belirtilmesi, tanı iddiasından kaçınılması, profesyonel yargının desteklenmesi ve kaynak zorunluluğu ile etik uyum sağlanmıştır.
+\end{enumerate}
+
+\section{Genel Değerlendirme}
+
+NIDA, psikolojik danışmanlık alanında yapay zekâ teknolojilerinin sorumlu ve etik biçimde nasıl kullanılabileceğine ilişkin bir model sunmaktadır. Sistem, tanı koyan bir araç olmayıp, profesyonel değerlendirmeyi destekleyen bir karar destek sistemi olarak konumlandırılmıştır.
+
+Bu yaklaşım, teknolojinin insan uzmanın yerini almak yerine, onu güçlendirmesi gerektiği ilkesini yansıtmaktadır. Luxton'un (2014) ``augmented intelligence'' kavramı, NIDA'nın felsefesini özetlemektedir: Yapay zekâ, insan uzmanlığını tamamlayan, onu ikame etmeyen bir araç olmalıdır.
+
+\begin{quotebox}
+``NIDA, psikolojik danışmanların profesyonel yargısını destekleyen, akademik literatüre dayalı bir karar destek sistemidir. Sistem, kesinlikle tanı aracı değildir ve profesyonel değerlendirmenin yerini almaz.''
+\end{quotebox}
+
+Çalışma, Türkiye'de PDR alanında yapay zekâ uygulamalarının öncü örneklerinden birini oluşturmakta ve gelecekteki benzer çalışmalar için bir temel sunmaktadır.
+
+\newpage

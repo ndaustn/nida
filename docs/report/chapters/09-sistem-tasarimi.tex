@@ -1,0 +1,380 @@
+% ============================================================
+% BÖLÜM 9: SİSTEM TASARIMI VE YAPISAL MODELLEME
+% ============================================================
+
+\chapter{SİSTEM TASARIMI VE YAPISAL MODELLEME}
+
+\section{UML Diyagramlarının Kullanım Gerekçesi}
+
+Eğitim ve psikolojik danışmanlık alanlarında teknoloji tabanlı projelerin sunulmasında, sistemin yapısının ve işleyişinin açık biçimde anlaşılması kritik öneme sahiptir. Bu bağlamda, Birleşik Modelleme Dili (Unified Modeling Language - UML) diyagramları kullanılmaktadır. UML, yazılım sistemlerinin görselleştirilmesi, belgelenmesi ve tasarlanması için standart bir notasyon sağlamaktadır (Booch, Rumbaugh ve Jacobson, 1999).
+
+PDR projelerinde UML kullanımının gerekçeleri:
+
+\begin{enumerate}
+  \item \textbf{Şeffaflık:} Sistemin bileşenleri ve işleyişi, teknik olmayan paydaşlar için de anlaşılır hale gelmektedir.
+  \item \textbf{Danışman-Sistem Etkileşiminin Modellenmesi:} Psikolojik danışmanın sistemle nasıl etkileşime geçtiği, süreç akışları ile gösterilmektedir.
+  \item \textbf{Akademik Standart:} UML, akademik projelerde yaygın kabul görmüş bir modelleme standardıdır.
+  \item \textbf{İletişim Kolaylığı:} Farklı disiplinlerden paydaşlar ortak bir dil üzerinden iletişim kurabilmektedir.
+\end{enumerate}
+
+\section{Sistem Mimarisi}
+
+NIDA, modern web teknolojileri üzerine inşa edilmiş, katmanlı bir mimari yapı kullanmaktadır:
+
+\begin{figure}[h!]
+\centering
+\begin{tcolorbox}[colback=gray!5, colframe=gray!75, width=0.95\textwidth, title=NIDA Sistem Mimarisi]
+\begin{verbatim}
++==============================================================+
+|                      NIDA MİMARİSİ                            |
++==============================================================+
+|                                                               |
+|   SUNUM KATMANI (Presentation Layer)                          |
+|   +---------------------------+                               |
+|   |     Next.js Frontend      |                               |
+|   |  - React Components       |                               |
+|   |  - Tailwind CSS           |                               |
+|   |  - TypeScript             |                               |
+|   |  - Responsive Design      |                               |
+|   +-------------+-------------+                               |
+|                 |                                             |
+|   İŞ MANTIK KATMANI (Business Logic Layer)                   |
+|   +-------------v-------------+                               |
+|   |    Next.js API Routes     |                               |
+|   |  - /api/analyze           |                               |
+|   |  - /api/auth              |                               |
+|   |  - /api/reports           |                               |
+|   +-------------+-------------+                               |
+|                 |                                             |
+|   HİZMET KATMANI (Service Layer)                             |
+|   +------+------+------+------+                               |
+|   |      |      |      |      |                               |
+|   v      v      v      v      v                               |
+| +----+ +----+ +----+ +----+ +----+                            |
+| |Fire| |Fire| |Gemi| |Know| |Auth|                            |
+| |stor| |base| |ni  | |ledg| |entic|                           |
+| |e   | |Stor| |API | |e   | |ation|                           |
+| +----+ +----+ +----+ +----+ +----+                            |
+|                                                               |
++==============================================================+
+\end{verbatim}
+\end{tcolorbox}
+\caption{NIDA Katmanlı Mimari Yapısı}
+\label{fig:mimari}
+\end{figure}
+
+\subsection{Teknoloji Yığını (Tech Stack)}
+
+\begin{table}[H]
+\centering
+\caption{NIDA Teknoloji Yığını}
+\label{tab:techstack}
+\begin{tabular}{p{3cm}p{4cm}p{6cm}}
+\toprule
+\textbf{Katman} & \textbf{Teknoloji} & \textbf{Açıklama} \\
+\midrule
+Frontend & Next.js 16 & React tabanlı full-stack framework \\
+Stil & Tailwind CSS & Utility-first CSS framework \\
+Dil & TypeScript & Tip güvenli JavaScript \\
+Backend & Next.js API Routes & Serverless API endpoints \\
+Veritabanı & Firebase Firestore & NoSQL belge veritabanı \\
+Dosya Depolama & Firebase Storage & Bulut dosya depolama \\
+Kimlik Doğrulama & Firebase Auth & Güvenli kullanıcı yönetimi \\
+Yapay Zekâ & Google Gemini 2.0 & Çok modlu LLM \\
+Deployment & Vercel & Serverless hosting \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Kullanım Senaryosu (Use Case) Diyagramı}
+
+Kullanım senaryosu diyagramı, sistemin işlevselliğini ve kullanıcıların sistemle etkileşimlerini göstermektedir.
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!75, title=Use Case Diyagramı (PlantUML)]
+\begin{verbatim}
+@startuml NIDA_UseCase
+
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Psikolojik Danışman" as PD
+actor "Sistem Yöneticisi" as Admin
+actor "Gemini API" as AI
+
+rectangle "NIDA Sistemi" {
+  usecase "Sisteme Giriş Yap" as UC1
+  usecase "Çizim Yükle" as UC2
+  usecase "Çocuk Bilgisi Gir" as UC3
+  usecase "Analiz Başlat" as UC4
+  usecase "Sonuçları Görüntüle" as UC5
+  usecase "Rapor Oluştur" as UC6
+  usecase "Analiz Geçmişini İncele" as UC7
+  usecase "Ayarları Düzenle" as UC8
+  usecase "Bilgi Tabanını Yönet" as UC9
+  usecase "Kullanıcıları Yönet" as UC10
+  usecase "Çizim Analiz Et" as UC11
+}
+
+PD --> UC1
+PD --> UC2
+PD --> UC3
+PD --> UC4
+PD --> UC5
+PD --> UC6
+PD --> UC7
+PD --> UC8
+
+Admin --> UC9
+Admin --> UC10
+
+UC4 --> UC11 : <<include>>
+UC11 --> AI : API Çağrısı
+
+@enduml
+\end{verbatim}
+\end{tcolorbox}
+
+\subsection{Kullanım Senaryosu Açıklamaları}
+
+\begin{table}[H]
+\centering
+\caption{NIDA Kullanım Senaryoları}
+\label{tab:usecases}
+\begin{tabular}{p{1cm}p{4cm}p{8cm}}
+\toprule
+\textbf{No} & \textbf{Senaryo} & \textbf{Açıklama} \\
+\midrule
+UC1 & Sisteme Giriş Yap & Psikolojik danışman, e-posta ve şifre ile sisteme giriş yapar \\
+UC2 & Çizim Yükle & HTP çiziminin fotoğrafı sisteme yüklenir \\
+UC3 & Çocuk Bilgisi Gir & Çocuğun yaşı, cinsiyeti ve çizim türü belirtilir \\
+UC4 & Analiz Başlat & Analiz süreci tetiklenir \\
+UC5 & Sonuçları Görüntüle & Yorumlar, kaynaklar ve öneriler görüntülenir \\
+UC6 & Rapor Oluştur & Analiz sonuçları PDF olarak dışa aktarılır \\
+UC7 & Analiz Geçmişini İncele & Önceki analizler listelenir ve incelenir \\
+UC8 & Ayarları Düzenle & Dil, bildirim ve tercihler düzenlenir \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Sınıf (Class) Diyagramı}
+
+Sınıf diyagramı, sistemin veri yapılarını ve bunlar arasındaki ilişkileri göstermektedir.
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!75, title=Sınıf Diyagramı (PlantUML), breakable]
+\begin{verbatim}
+@startuml NIDA_Class
+
+class User {
+  -id: String
+  -email: String
+  -displayName: String
+  -role: UserRole
+  -school: String
+  -language: Language
+  -createdAt: DateTime
+  +login()
+  +logout()
+  +updateSettings()
+}
+
+class Analysis {
+  -id: String
+  -userId: String
+  -imageUrl: String
+  -childAge: Integer
+  -childGender: Gender
+  -drawingType: DrawingType
+  -status: AnalysisStatus
+  -createdAt: DateTime
+  +startAnalysis()
+  +getResult()
+}
+
+class AnalysisResult {
+  -summary: String
+  -overallAssessment: String
+  -confidence: ConfidenceLevel
+  -language: Language
+  -recommendations: List<String>
+  +generateReport()
+}
+
+class Interpretation {
+  -element: String
+  -observation: String
+  -interpretation: String
+  -confidence: ConfidenceLevel
+  +getSources()
+  +getAlternativeViews()
+}
+
+class KBRule {
+  -id: String
+  -element: DrawingElement
+  -indicator: Indicator
+  -interpretation_tr: String
+  -interpretation_en: String
+  -confidence: ConfidenceLevel
+  -evidenceStrength: EvidenceStrength
+  +getApplicableRules()
+}
+
+class AcademicSource {
+  -author: String
+  -year: Integer
+  -title: String
+  +formatCitation()
+}
+
+User "1" --> "*" Analysis
+Analysis "1" --> "1" AnalysisResult
+AnalysisResult "1" --> "*" Interpretation
+Interpretation "*" --> "*" AcademicSource
+KBRule "*" --> "*" AcademicSource
+Interpretation "*" --> "*" KBRule
+
+@enduml
+\end{verbatim}
+\end{tcolorbox}
+
+\section{Süreç (Sequence) Diyagramı}
+
+Süreç diyagramı, analiz işleminin adım adım akışını göstermektedir.
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!75, title=Süreç Diyagramı (PlantUML), breakable]
+\begin{verbatim}
+@startuml NIDA_Sequence
+
+actor "Psikolojik\nDanışman" as PD
+participant "Web\nArayüzü" as UI
+participant "API\nSunucusu" as API
+database "Firebase" as DB
+participant "Bilgi\nTabanı" as KB
+participant "Gemini\nAPI" as AI
+
+PD -> UI: Çizimi yükle
+UI -> API: POST /api/analyze
+API -> DB: Çizimi kaydet
+DB --> API: imageUrl
+
+API -> KB: İlgili kuralları getir
+KB --> API: KBRules[]
+
+API -> AI: Analiz isteği\n(image + prompt + KB)
+AI --> API: JSON yanıt
+
+API -> API: Yanıtı doğrula
+API -> DB: Sonucu kaydet
+DB --> API: analysisId
+
+API --> UI: Analiz sonucu
+UI --> PD: Yorumları göster
+
+@enduml
+\end{verbatim}
+\end{tcolorbox}
+
+\section{Veri Akış Diyagramı}
+
+\begin{figure}[h!]
+\centering
+\begin{tcolorbox}[colback=gray!5, colframe=gray!75, width=0.85\textwidth]
+{\small
+\begin{verbatim}
+              +------------+
+              | Kullanıcı  |
+              +-----+------+
+                    |
+         +----------+----------+
+         |                     |
+         v                     v
+   +-----------+         +-----------+
+   |  Çizim    |         |  Bilgi    |
+   |  Yükleme  |         |  Girişi   |
+   +-----+-----+         +-----+-----+
+         |                     |
+         +----------+----------+
+                    |
+                    v
+         +-------------------+
+         | Veri Birleştirme  |
+         +-------------------+
+                    |
+         +----------+----------+
+         |                     |
+         v                     v
+   +-----------+         +-----------+
+   |  Bilgi    |         |  Gemini   |
+   |  Tabanı   |         |   API     |
+   +-----+-----+         +-----+-----+
+         |                     |
+         +----------+----------+
+                    |
+                    v
+         +-------------------+
+         | Sonuç Birleştirme |
+         +-------------------+
+                    |
+                    v
+         +-------------------+
+         | Sonuç & Raporlama |
+         +-------------------+
+\end{verbatim}
+}
+\end{tcolorbox}
+\caption{NIDA Veri Akış Diyagramı}
+\label{fig:dfd}
+\end{figure}
+
+\section{Yapay Zekâ Karar Mekanizması Akış Diyagramı}
+
+NIDA sisteminde görsel girdiden nihai yoruma ulaşılması birbirine bağlı üç ana aşamadan oluşmaktadır: bilgi tabanı eşleştirmesi, Gemini API analizi ve sonuç sentezi. Aşağıdaki akış diyagramı bu üç aşamanın adım adım işleyişini göstermektedir.
+
+\begin{figure}[h!]
+\centering
+\begin{tcolorbox}[colback=gray!5, colframe=gray!75, width=0.90\textwidth, title=Yapay Zekâ Karar Mekanizması]
+\begin{verbatim}
++------------------------------------------+
+|     GİRDİ: HTP Çizimi + Çocuk Yaşı      |
++--------------------+---------------------+
+                     |
+                     v
++------------------------------------------+
+|  AŞAMA 1: BİLGİ TABANI EŞLEŞTİRMESİ    |
+|  - Çizim türü belirlenir                 |
+|  - Yaş aralığı filtrelenir               |
+|  - İlgili KB kuralları seçilir           |
+|  - Güven seviyeleri ön işlenir           |
++--------------------+---------------------+
+                     |
+                     v
++------------------------------------------+
+|  AŞAMA 2: GEMİNİ API ANALİZİ            |
+|  - Çizim görüntüsü modele gönderilir     |
+|  - KB kuralları prompt'a enjekte edilir  |
+|  - Etik kısıtlamalar uygulanır           |
+|  - Model yapılandırılmış JSON üretir     |
++--------------------+---------------------+
+                     |
+                     v
++------------------------------------------+
+|  AŞAMA 3: SONUÇ SENTEZİ                 |
+|  - JSON çıktısı doğrulanır               |
+|  - Her yorum kaynakla eşleştirilir       |
+|  - Güven seviyeleri atanır               |
+|  - Çelişkili görüşler eklenir            |
++--------------------+---------------------+
+                     |
+                     v
++------------------------------------------+
+|    ÇIKTI: Kaynaklı, Güven Seviyeli Yorum |
++------------------------------------------+
+\end{verbatim}
+\end{tcolorbox}
+\caption{NIDA Yapay Zekâ Karar Mekanizması Akış Diyagramı}
+\label{fig:karar-mekanizmasi}
+\end{figure}
+
+Bu üç aşamalı yapı, sistemin şeffaf bir karar destek mekanizması olarak çalışmasını sağlamaktadır. Bilgi tabanı eşleştirmesi aşaması, modelin yalnızca akademik literatürde belgelenmiş göstergeler üzerinden yorum üretmesini güvence altına almaktadır. Sonuç sentezi aşaması ise her çıktının izlenebilir bir akademik kaynağa bağlanmasını zorunlu kılmaktadır.
+
+\newpage
