@@ -18,13 +18,12 @@ export async function analyzeDrawing(
     );
   }
 
-  const idToken = await currentUser.getIdToken();
 
   const response = await fetch("/api/analyze", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${idToken}`,
+
     },
     body: JSON.stringify({
       imageBase64,
