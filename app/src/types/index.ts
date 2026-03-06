@@ -4,7 +4,7 @@ export type UserRole = 'counselor' | 'teacher' | 'admin';
 export type DrawingType = 'house' | 'tree' | 'person' | 'full_htp';
 export type AnalysisStatus = 'pending' | 'processing' | 'completed' | 'failed';
 export type ConfidenceLevel = 'low' | 'moderate' | 'high';
-export type EvidenceStrength = 'meta_analysis' | 'replicated' | 'single_study' | 'clinical_consensus' | 'theoretical';
+export type EvidenceStrength = 'meta_analysis' | 'replicated' | 'single_study' | 'clinical_consensus' | 'theoretical' | 'limited';
 export interface User {
   id: string;
   email: string;
