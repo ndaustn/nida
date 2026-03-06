@@ -1,3 +1,4 @@
+
 // Gemini API Client — calls the server-side API route with Firebase auth token
 import { KBRule, AnalysisResult, Language } from "@/types";
 import { auth } from "@/lib/firebase";
