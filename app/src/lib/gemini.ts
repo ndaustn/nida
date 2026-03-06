@@ -1,18 +1,29 @@
-// Gemini API Client - Uses server-side API route for security
-import { KBRule, AnalysisResult, Language } from '@/types';
+// Gemini API Client — calls the server-side API route with Firebase auth token
+import { KBRule, AnalysisResult, Language } from "@/types";
+import { auth } from "@/lib/firebase";
 
 export async function analyzeDrawing(
   imageBase64: string,
   mimeType: string,
   childAge: number,
   drawingType: string,
-  _kbRules: KBRule[],
-  language: Language = 'tr'
+  _kbRules: KBRule[], // age-aware filtering is done server-side
+  language: Language = "tr"
 ): Promise<AnalysisResult> {
-  const response = await fetch('/api/analyze', {
-    method: 'POST',
+  // Retrieve Firebase ID token for authenticated API call
+  const currentUser = auth?.currentUser;
+  if (!currentUser) {
+    throw new Error(
+      "Kimlik doğrulaması gereklidir. Lütfen yeniden giriş yapın."
+    );
+  }
+
+
+  const response = await fetch("/api/analyze", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
+
     },
     body: JSON.stringify({
       imageBase64,
@@ -24,8 +35,10 @@ export async function analyzeDrawing(
   });
 
   if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.error || 'Analysis failed');
+    const errorBody = await response.json().catch(() => ({}));
+    throw new Error(
+      errorBody.message || errorBody.error || "Analiz başarısız oldu."
+    );
   }
 
   return response.json();

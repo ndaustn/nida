@@ -101,6 +101,7 @@ export default function DashboardPage() {
                 <span className="text-white font-bold">N</span>
               </div>
               <span className="text-lg font-bold text-gray-900">NIDA</span>
+              <span className="hidden md:inline text-xs text-gray-400 font-normal ml-1">Native Interpretive Drawing Analysis</span>
             </Link>
 
             <div className="flex items-center gap-4">
@@ -249,9 +250,7 @@ export default function DashboardPage() {
           <div className="flex items-start gap-3">
             <span className="text-xl">⚠️</span>
             <p className="text-sm text-amber-800">
-              <strong>Hatırlatma:</strong> NIDA bir tanı aracı değildir. Sunulan
-              yorumlar akademik literatüre dayalı olup, profesyonel
-              değerlendirme yerine geçmez.
+              <strong>Hatırlatma:</strong> NIDA (Native Interpretive Drawing Analysis) bir tanı veya teşhis aracı değildir. Sunulan yorumlar akademik literatüre dayalı gelişimsel referans bilgileridir; profesyonel klinik değerlendirmenin yerini alamaz.
             </p>
           </div>
         </div>

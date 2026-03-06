@@ -185,7 +185,7 @@ export default function AnalyzePage() {
               <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold">N</span>
               </div>
-              <span className="text-lg font-bold text-gray-900">NIDA</span>
+              <span className="text-lg font-bold text-gray-900">NIDA</span><span className="hidden md:inline text-xs text-gray-400 font-normal ml-1">Native Interpretive Drawing Analysis</span>
             </Link>
             <Link href="/dashboard">
               <Button variant="ghost" size="sm">
@@ -339,11 +339,32 @@ export default function AnalyzePage() {
                     className="w-4 h-4 text-indigo-600 rounded"
                   />
                   <label htmlFor="anonymize" className="text-sm text-blue-800 font-medium cursor-pointer">
-                    Veriyi anonimleştir (Kişisel veri güvenliği için önerilir)
+                    Veriyi anonimleştir — KVKK kapsamında kişisel veri güvenliği için <strong>önerilir</strong>
                   </label>
                 </div>
               </CardContent>
             </Card>
+
+            {/* Parental Consent & Ethics Notice */}
+            <div className="border border-amber-200 bg-amber-50 rounded-xl p-4 space-y-2">
+              <p className="text-sm font-semibold text-amber-900">
+                Analiz Başlamadan Önce Onaylayın
+              </p>
+              <ul className="text-sm text-amber-800 space-y-1 list-disc list-inside">
+                <li>
+                  Bu çizimi yüklemeden önce çocuğun velisi/vasisi bilgilendirilmiş
+                  ve KVKK kapsamında gerekli açık rıza alınmıştır.
+                </li>
+                <li>
+                  Analiz sonuçları yalnızca mesleki gelişimsel referans amacıyla
+                  kullanılacaktır; tanı veya teşhis için kullanılmayacaktır.
+                </li>
+                <li>
+                  Sonuçlar çocuk veya ailesiyle paylaşılırken klinik denetim
+                  altında değerlendirilecektir.
+                </li>
+              </ul>
+            </div>
 
             {/* Submit */}
             <Button
@@ -352,7 +373,7 @@ export default function AnalyzePage() {
               disabled={!file}
               onClick={handleAnalyze}
             >
-              Yapay Zeka Analizini Başlat
+              Akademik Referans Analizini Başlat
             </Button>
           </div>
         )}
@@ -464,14 +485,22 @@ export default function AnalyzePage() {
 
             {/* Interpretations */}
             <div>
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-3">
                 <h2 className="text-lg font-bold text-gray-900">
-                  Akademik Bulgular ({results.interpretations.length})
+                  Gelişimsel Referans Bulgular ({results.interpretations.length})
                 </h2>
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-medium text-gray-400 uppercase">HTP Literatür Analizi</span>
+                  <span className="text-xs font-medium text-gray-400 uppercase">HTP Literatür Referansı</span>
                   <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
                 </div>
+              </div>
+              {/* Safety notice above cards */}
+              <div className="mb-4 p-3 bg-gray-50 border border-gray-200 rounded-lg">
+                <p className="text-xs text-gray-500 leading-relaxed">
+                  Aşağıdaki bulgular akademik HTP literatürüne dayalı <strong>gelişimsel referans bilgileridir</strong>.
+                  Hiçbir bulgu tek başına tanı niteliği taşımaz; çocuğun yaşı, kültürel bağlamı ve
+                  diğer gözlemlerle birlikte ancak yetkili bir uzman tarafından değerlendirilebilir.
+                </p>
               </div>
               <div className="grid md:grid-cols-2 gap-4">
                 {results.interpretations.map((interpretation, index) => (
@@ -510,12 +539,18 @@ export default function AnalyzePage() {
               <div className="flex items-start gap-4">
                 <span className="text-3xl">⚖️</span>
                 <div className="space-y-2">
-                  <h4 className="font-bold text-amber-900">Etik ve Yasal Sorumluluk Reddi</h4>
+                  <h4 className="font-bold text-amber-900">Etik ve Yasal Sorumluluk Bildirimi</h4>
                   <p className="text-sm text-amber-800 leading-relaxed">
-                    Bu analiz, House-Tree-Person (HTP) projektif test literatürüne dayalı bir <strong>yapay zeka asistanı</strong> tarafından üretilmiştir. 
-                    Bu sonuçlar bir <strong>tanı veya teşhis niteliği taşımaz</strong>. Analiz bulguları sadece eğitimli bir psikolog veya psikiyatrist 
-                    tarafından, diğer klinik gözlemler ve testlerle birleştirilerek değerlendirilmelidir. 
-                    NIDA, bu verilerin yanlış kullanımından sorumlu tutulamaz.
+                    Bu rapor, NIDA — <strong>Native Interpretive Drawing Analysis</strong> sistemi tarafından
+                    House-Tree-Person (HTP) akademik literatürü referans alınarak üretilmiştir.
+                    Sunulan bulgular <strong>gelişimsel referans bilgisidir</strong>; tanı, teşhis veya klinik
+                    değerlendirme niteliği taşımaz. Bulgular yalnızca, diğer klinik gözlemler ve testlerle
+                    birleştirilerek eğitimli psikolog veya psikiyatrist tarafından yorumlanabilir.
+                    Sonuçların yanlış kullanımından doğabilecek zararlar münhasıran kullanıcıya aittir.
+                  </p>
+                  <p className="text-xs text-amber-700 mt-1">
+                    KVKK uyarınca: Bu analizde işlenen çocuğa ait veriler için veli onayı
+                    alınmış olduğu kullanıcı tarafından beyan edilmiştir.
                   </p>
                 </div>
               </div>

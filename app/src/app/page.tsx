@@ -39,13 +39,13 @@ export default function Home() {
               Erzincan Binali Yıldırım Üniversitesi
             </p>
             <h1 className="text-4xl md:text-5xl font-light text-gray-900 mb-6 leading-tight">
-              Yapay Zekâ Destekli<br />
-              <span className="font-medium">Çocuk Çizimi Analiz Sistemi</span>
+              Native Interpretive<br />
+              <span className="font-medium">Drawing Analysis</span>
             </h1>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl">
               NIDA, House-Tree-Person (HTP) çizimlerini yapay zekâ ile analiz ederek
-              okul psikolojik danışmanlarının klinik değerlendirme süreçlerini
-              akademik literatürle destekler.
+              okul psikolojik danışmanlarının gelişimsel değerlendirme süreçlerini
+              akademik literatür referanslarıyla destekleyen bir karar destek aracıdır.
             </p>
             <div className="flex flex-wrap items-center gap-4">
               <Link
@@ -151,10 +151,13 @@ export default function Home() {
                 Önemli Bilgi
               </h2>
               <p className="text-sm text-gray-600 leading-relaxed">
-                NIDA, psikolojik tanı aracı değildir. Sunulan yorumlar akademik
-                literatüre dayalı karar destek bilgileri olup, profesyonel klinik
-                değerlendirmenin yerini almaz. Endişelendirici bulgularda uzman
-                yönlendirmesi yapılmalıdır.
+                NIDA (Native Interpretive Drawing Analysis) bir tanı veya teşhis
+                aracı değildir. Sunulan yorumlar, akademik literatüre dayalı
+                gelişimsel referans bilgileridir ve profesyonel klinik
+                değerlendirmenin yerini alamaz. Endişelendirici bulgularda yetkili
+                uzman yönlendirmesi zorunludur. Sistem, yalnızca lisanslı psikolojik
+                danışmanlar ve bu alanda eğitim almış öğretmenler tarafından
+                kullanılmalıdır.
               </p>
             </div>
           </div>
@@ -166,7 +169,7 @@ export default function Home() {
         <div className="container mx-auto px-6 py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-xs text-gray-500">
-              <p>2026 NIDA · Psikolojik Danışmanlık ve Rehberlik Akademik Projesi</p>
+              <p>2026 NIDA · Native Interpretive Drawing Analysis · Akademik Proje</p>
               <p className="mt-1">Erzincan Binali Yıldırım Üniversitesi, Eğitim Fakültesi</p>
             </div>
             <div className="flex items-center gap-6 text-xs text-gray-500">

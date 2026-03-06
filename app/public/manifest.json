@@ -1,7 +1,7 @@
 {
-  "name": "NIDA - Projektif Çizim Analizi",
+  "name": "NIDA - Native Interpretive Drawing Analysis",
   "short_name": "NIDA",
-  "description": "Yapay Zeka Destekli HTP Çizim Analizi Platformu",
+  "description": "HTP Çizimlerine Dayalı Yapay Zeka Destekli Akademik Referans Platformu",
   "start_url": "/dashboard",
   "display": "standalone",
   "background_color": "#ffffff",

@@ -10,9 +10,17 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "NIDA - Çocuk Çizimi Analiz Sistemi",
-  description: "House-Tree-Person (HTP) testi bağlamında yapay zeka destekli çocuk çizimi analiz platformu",
-  keywords: ["HTP", "çocuk çizimi", "psikolojik değerlendirme", "yapay zeka", "PDR"],
+  title: "NIDA - Native Interpretive Drawing Analysis",
+  description:
+    "House-Tree-Person (HTP) testi bağlamında yapay zeka destekli çocuk çizimi akademik referans platformu",
+  keywords: [
+    "HTP",
+    "çocuk çizimi",
+    "gelişimsel değerlendirme",
+    "yapay zeka",
+    "PDR",
+    "projektif çizim",
+  ],
   manifest: "/manifest.json",
   themeColor: "#4f46e5",
   appleWebApp: {

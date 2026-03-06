@@ -77,7 +77,7 @@ export default function RegisterPage() {
             <div className="w-8 h-8 bg-gray-900 rounded flex items-center justify-center">
               <span className="text-white font-semibold text-sm">N</span>
             </div>
-            <span className="text-lg font-semibold text-gray-900">NIDA</span>
+            <span className="text-lg font-semibold text-gray-900">NIDA</span><span className="hidden md:inline text-xs text-gray-400 font-normal ml-1">Native Interpretive Drawing Analysis</span>
           </Link>
         </div>
 
