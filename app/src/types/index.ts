@@ -1,12 +1,10 @@
 // NIDA Type Definitions
-
 export type Language = 'tr' | 'en';
 export type UserRole = 'counselor' | 'teacher' | 'admin';
 export type DrawingType = 'house' | 'tree' | 'person' | 'full_htp';
 export type AnalysisStatus = 'pending' | 'processing' | 'completed' | 'failed';
 export type ConfidenceLevel = 'low' | 'moderate' | 'high';
 export type EvidenceStrength = 'meta_analysis' | 'replicated' | 'single_study' | 'clinical_consensus' | 'theoretical';
-
 export interface User {
   id: string;
   email: string;
@@ -17,7 +15,6 @@ export interface User {
   createdAt: Date;
   updatedAt: Date;
 }
-
 export interface Analysis {
   id: string;
   userId: string;
@@ -35,16 +32,16 @@ export interface Analysis {
   completedAt?: Date;
   notes?: string;
 }
-
 export interface AnalysisResult {
   summary: string;
   interpretations: Interpretation[];
-  overallAssessment: string;
+  overallAssessment?: string;
   recommendations: string[];
-  confidence: ConfidenceLevel;
-  language: Language;
+  confidence?: ConfidenceLevel;
+  language?: Language;
+  spatialAnalysis?: string;
+  developmentalNotes?: string;
 }
-
 export interface Interpretation {
   element: string;
   observation: string;
@@ -54,12 +51,10 @@ export interface Interpretation {
   sources: AcademicSource[];
   alternativeViews?: AlternativeView[];
 }
-
 export interface AlternativeView {
   interpretation: string;
   source: AcademicSource;
 }
-
 export interface AcademicSource {
   id: string;
   author: string;
@@ -67,7 +62,6 @@ export interface AcademicSource {
   title: string;
   type: 'book' | 'article' | 'meta_analysis';
 }
-
 export interface KBRule {
   id: string;
   element: string;
@@ -86,7 +80,6 @@ export interface KBRule {
   };
   tags: string[];
 }
-
 export interface ApiResponse<T> {
   success: boolean;
   data?: T;
