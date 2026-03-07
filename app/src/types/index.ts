@@ -36,6 +36,14 @@ export interface Analysis {
   notes?: string;
 }
 
+export interface SpatialAnalysis {
+  composition?: string;
+  placement?: string;
+  size?: string;
+  pressure?: string;
+  [key: string]: string | undefined;
+}
+
 export interface AnalysisResult {
   summary: string;
   interpretations: Interpretation[];
@@ -43,6 +51,8 @@ export interface AnalysisResult {
   recommendations: string[];
   confidence: ConfidenceLevel;
   language: Language;
+  spatialAnalysis?: SpatialAnalysis;
+  developmentalNotes?: string;
 }
 
 export interface Interpretation {
