@@ -16,7 +16,7 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { analyzeDrawing } from "@/lib/gemini";
 import { getKBRules } from "@/lib/knowledge-base";
 import { preprocessDrawing } from "@/lib/image-processor";
-import { DrawingType, Language, Interpretation } from "@/types";
+import { DrawingType, Language, Interpretation, SpatialAnalysis } from "@/types";
 
 export default function AnalyzePage() {
   const router = useRouter();
@@ -35,7 +35,7 @@ export default function AnalyzePage() {
   const [results, setResults] = useState<{
     interpretations: Interpretation[];
     summary: string;
-    spatialAnalysis?: string;
+    spatialAnalysis?: SpatialAnalysis;
     recommendations: string[];
     developmentalNotes?: string;
   } | null>(null);
@@ -105,7 +105,6 @@ export default function AnalyzePage() {
     setError("");
 
     try {
-      // Upload image to Firebase Storage (Original image)
       const storageRef = ref(
         storage,
         `drawings/${user.uid}/${Date.now()}_${file.name}`
@@ -113,14 +112,11 @@ export default function AnalyzePage() {
       await uploadBytes(storageRef, file);
       const imageUrl = await getDownloadURL(storageRef);
 
-      // Get base64 for Gemini (Processed image for better accuracy)
       const base64 = processedPreview.split(",")[1];
-      const mimeType = "image/jpeg"; // Processed image is jpeg
+      const mimeType = "image/jpeg";
 
-      // Get KB rules
       const kbRules = getKBRules(drawingType);
 
-      // Analyze with Gemini
       const analysisResult = await analyzeDrawing(
         base64,
         mimeType,
@@ -130,7 +126,6 @@ export default function AnalyzePage() {
         language
       );
 
-      // Save to Firestore
       const docRef = await addDoc(collection(db, "analyses"), {
         userId: anonymize ? "anonymous" : user.uid,
         imageUrl,
@@ -177,7 +172,6 @@ export default function AnalyzePage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <header className="bg-white border-b border-gray-200">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -196,7 +190,6 @@ export default function AnalyzePage() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="container mx-auto px-4 py-8 max-w-4xl">
         <h1 className="text-2xl font-bold text-gray-900 mb-6">
           Çizim Analizi
@@ -210,7 +203,6 @@ export default function AnalyzePage() {
 
         {step === "upload" && (
           <div className="space-y-6">
-            {/* Upload Area */}
             <Card>
               <CardHeader>
                 <CardTitle>1. Çizimi Yükle</CardTitle>
@@ -286,7 +278,6 @@ export default function AnalyzePage() {
               </CardContent>
             </Card>
 
-            {/* Options */}
             <Card>
               <CardHeader>
                 <CardTitle>2. Bilgileri Gir</CardTitle>
@@ -345,7 +336,6 @@ export default function AnalyzePage() {
               </CardContent>
             </Card>
 
-            {/* Parental Consent & Ethics Notice */}
             <div className="border border-amber-200 bg-amber-50 rounded-xl p-4 space-y-2">
               <p className="text-sm font-semibold text-amber-900">
                 Analiz Başlamadan Önce Onaylayın
@@ -366,7 +356,6 @@ export default function AnalyzePage() {
               </ul>
             </div>
 
-            {/* Submit */}
             <Button
               size="lg"
               className="w-full"
@@ -394,7 +383,6 @@ export default function AnalyzePage() {
 
         {step === "results" && results && (
           <div className="space-y-6">
-            {/* Summary */}
             <Card>
               <CardHeader>
                 <CardTitle>Genel Değerlendirme</CardTitle>
@@ -409,7 +397,6 @@ export default function AnalyzePage() {
                         className="w-full md:w-64 h-auto object-cover rounded-lg shadow-md border border-gray-100"
                         id="target-image"
                       />
-                      {/* Bounding Box Overlay */}
                       {selectedBox && (
                         <svg
                           className="absolute inset-0 w-full h-full pointer-events-none"
@@ -450,7 +437,13 @@ export default function AnalyzePage() {
                     {results.spatialAnalysis && (
                       <div>
                         <h4 className="font-semibold text-gray-900 mb-1">Mekansal Analiz</h4>
-                        <p className="text-gray-700 leading-relaxed text-sm italic">{results.spatialAnalysis}</p>
+                        <p className="text-gray-700 leading-relaxed text-sm italic">
+                          {typeof results.spatialAnalysis === 'string'
+                            ? results.spatialAnalysis
+                            : Object.entries(results.spatialAnalysis)
+                                .map(([k, v]) => `${k}: ${v}`)
+                                .join(' • ')}
+                        </p>
                       </div>
                     )}
                     <div className="flex flex-wrap gap-2">
@@ -471,7 +464,6 @@ export default function AnalyzePage() {
               </CardContent>
             </Card>
 
-            {/* Developmental Notes */}
             {results.developmentalNotes && (
               <div className="bg-indigo-50 border border-indigo-100 rounded-xl p-4">
                 <h4 className="text-sm font-bold text-indigo-900 mb-1 uppercase tracking-wider flex items-center gap-2">
@@ -483,7 +475,6 @@ export default function AnalyzePage() {
               </div>
             )}
 
-            {/* Interpretations */}
             <div>
               <div className="flex items-center justify-between mb-3">
                 <h2 className="text-lg font-bold text-gray-900">
@@ -494,7 +485,6 @@ export default function AnalyzePage() {
                   <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
                 </div>
               </div>
-              {/* Safety notice above cards */}
               <div className="mb-4 p-3 bg-gray-50 border border-gray-200 rounded-lg">
                 <p className="text-xs text-gray-500 leading-relaxed">
                   Aşağıdaki bulgular akademik HTP literatürüne dayalı <strong>gelişimsel referans bilgileridir</strong>.
@@ -515,7 +505,6 @@ export default function AnalyzePage() {
               </div>
             </div>
 
-            {/* Recommendations */}
             {results.recommendations && results.recommendations.length > 0 && (
               <Card>
                 <CardHeader>
@@ -534,7 +523,6 @@ export default function AnalyzePage() {
               </Card>
             )}
 
-            {/* Disclaimer */}
             <div className="bg-amber-50 border border-amber-200 rounded-xl p-6">
               <div className="flex items-start gap-4">
                 <span className="text-3xl">⚖️</span>
@@ -556,7 +544,6 @@ export default function AnalyzePage() {
               </div>
             </div>
 
-            {/* Actions */}
             <div className="flex flex-wrap gap-4 no-print pb-12">
               <Button variant="outline" onClick={handleReset}>
                 Yeni Analiz
